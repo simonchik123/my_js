@@ -27,3 +27,22 @@ let incr = 10,
 
 console.log(++incr);
 console.log(--decr);
+
+let a,b;
+a = [1, 2, 3]; b = [1, 2, 3];
+
+if ("ёжик" > "яблоко"){
+    console.log('wow');
+} else {
+    console.log('no');
+}
+
+console.log( 0 || "" || 2 || undefined || true || false );
+
+function get_arr(arr=[]){
+    arr.push(arr.length);
+    if(arr.length < 3) get_arr(arr);
+    return arr;
+  }
+
+  console.log(get_arr());

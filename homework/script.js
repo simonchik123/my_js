@@ -1,12 +1,10 @@
 'use strict';
 
 let money,
-    time,
-    optionalExpenses,
-    income;
+    time;
 
 money = prompt("Ваш бюджет на месяц ?","");
-time = prompt(" Введите дату в формате YYYY-MM-DD");
+time = prompt(" Введите дату в формате YYYY-MM-DD","");
 
 
 let q1  = prompt("Введите обязательную статью 1 расходов в этом месяце","");
@@ -20,11 +18,12 @@ let appData = {
     money : money,
     time : time,
     expenses : {
-        "q1" : q2,
-        "q3" : q4
+        [q1] : q2,
+        [q3] : q4
     },
-    optionalExpenses,
-    income
+    optionalExpenses : {},
+    income :[],
+    savings: false
 };
 
 
@@ -35,5 +34,6 @@ for (var key in appData.expenses) {
     console.log( "Ключ: " + key + " значение: " + appData.expenses[key] );
 }
 
+console.log(appData.expenses.еда);
 
 alert ("Бюджет на один день - "+ money/30);
