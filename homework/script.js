@@ -14,7 +14,7 @@ let appData = {
     savings: false
 };
 
-for (let i = 1;i < 3; i++){
+/* for (let i = 1;i < 3; i++){
     let q1  = prompt("Введите обязательную статью расходов в этом месяце","");
     let q2  = +prompt("Во сколько обойдется?","");
 
@@ -24,7 +24,21 @@ for (let i = 1;i < 3; i++){
     } else {
         i--;
     }
-}
+} */
+
+let i=1;
+do {
+    let q1  = prompt("Введите обязательную статью расходов в этом месяце","");
+    let q2  = +prompt("Во сколько обойдется?","");
+
+    if ((typeof(q1)==='string') && (typeof(q1)!= null) && (typeof(q2)!= null)
+        && q1 != '' && q2 !='' && q1.length < 50) {
+    appData.expenses[q1] = q2;    
+    } else {
+        --i;
+    }
+    i++;
+} while (i < 3);
 
 for (var key in appData.expenses) {
     // этот код будет вызван для каждого свойства объекта
