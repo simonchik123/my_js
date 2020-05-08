@@ -63,13 +63,25 @@ chooseIncome.addEventListener('input', function(){
     appData.chooseIncome();
 });
 
+savings.addEventListener('click', function(){
+    appData.savings = appData.savings ? false : true;
+});
+
+sum.addEventListener('input', function(){
+    appData.sberegeniya();
+});
+
+percent.addEventListener('input', function(){
+    appData.sberegeniya();
+});
+
 let appData = {
     money,
     time: time,
     expenses: {},
     optionalExpenses: {},
     income: [],
-    savings: true,
+    savings: false,
     addExpenses: function () {
 
         let sum = 0;
@@ -104,11 +116,13 @@ let appData = {
     },
     sberegeniya: function () {
         if (appData.savings == true) {
-            let save = +prompt("Какова сумма накоплений ?"),
-                percent = +prompt("Каков процент по кредиту ?");
+            let save = +sum.value,
+                percentv = +percent.value;
 
-            appData.monthIncame = +(save / 100 / 12 * percent).toFixed(2);
-            alert("Доход в месяц с вашего депозита " + appData.monthIncame);
+            appData.monthIncame = +(save / 100 / 12 * percentv).toFixed(2);
+            appData.yearIncame = +(save / 100 * percentv).toFixed(2);
+            monthsavings.textContent = appData.monthIncame;
+            yearsavings.textContent = appData.yearIncame;            
         }
     },
 
