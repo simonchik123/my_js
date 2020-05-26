@@ -62,7 +62,8 @@ window.addEventListener('DOMContentLoaded', function(){
 
         function updateClock(){
             let t = getTimeRemaining(endTime);
-        }    
+            
+        }
     }
 
     setClock('timer', deadLine);
