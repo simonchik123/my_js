@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     // Timer
 
-    let deadLine = '2020-07-04';
+    let deadLine = '2020-05-28';
 
     function getTimeRemaining(endTime) {
         let t = Date.parse(endTime) - Date.parse(new Date()),
@@ -58,11 +58,19 @@ window.addEventListener('DOMContentLoaded', function(){
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
             seconds = timer.querySelector('.seconds'),
-            days = timer.querySelector('.days');
+            days = timer.querySelector('.days'),
+            timeInterval = setInterval(updateClock,1000);
 
         function updateClock(){
             let t = getTimeRemaining(endTime);
-            
+            hours.textContent = t.hours;
+            minutes.textContent = t.minutes;
+            seconds.textContent = t.seconds;
+            days.textContent = t.days;
+            if (t.total <=0){
+                clearInterval(timeInterval);
+            }
+
         }
     }
 
