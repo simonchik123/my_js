@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     // Timer
 
-    let deadLine = '2020-05-28';
+    let deadLine = '2020-05-29';
 
     function getTimeRemaining(endTime) {
         let t = Date.parse(endTime) - Date.parse(new Date()),
@@ -46,10 +46,10 @@ window.addEventListener('DOMContentLoaded', function(){
         
         return {
             'total': t,
-            'days':days,
-            'hours':hours,
-            'minutes':minutes,
-            'seconds':seconds
+            'days':('0'+days).slice(-2),
+            'hours':('0'+hours).slice(-2),
+            'minutes':('0'+minutes).slice(-2),
+            'seconds':('0'+seconds).slice(-2)
         };
     }
 
