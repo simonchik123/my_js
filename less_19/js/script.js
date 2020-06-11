@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', function(){
     'use strict';
     let infoHeader = document.querySelector('.info-header'),
-        infoHeaderTab = document.querySelectorAll('.info-header-tab'),
+        infoHeaderTab = document.querySelectorAll('.info-header-tab'),        
         infoTabContent = document.querySelectorAll('.info-tabcontent');
 
     function hideinfoTabContent(a){
@@ -32,6 +32,8 @@ window.addEventListener('DOMContentLoaded', function(){
             }
         }
     });
+
+    
 
     // Timer
 
@@ -75,4 +77,38 @@ window.addEventListener('DOMContentLoaded', function(){
     }
 
     setClock('timer', deadLine);
+
+    // modal
+
+    let more = document.querySelector('.more'),        
+        overlay = document.querySelector('.overlay'),
+        descriptionButton = document.querySelectorAll('.description-btn'),
+        close = document.querySelector('.popup-close');
+
+        console.log(descriptionButton);
+
+    more.addEventListener('click',function(){
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden';
+    });
+
+    close.addEventListener('click',function(){
+        overlay.style.display = 'none';
+        more.classList.add('more-splash');
+        document.body.style.overflow = '';
+    });
+
+    infoTabContent.addEventListener('click', function(event){
+        let target = event.target;
+        if(target && target.classList.contains('.description-btn')){
+            for(let i=0;i<descriptionButton.length;i++){
+                if(target == descriptionButton[i]){
+                    overlay.style.display = 'block';
+                    more.classList.add('more-splash');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        }
+    });
 });
