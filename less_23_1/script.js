@@ -1,7 +1,7 @@
 'use strict';
 
-/* 
-function showThis(a,b){
+
+/* function showThis(a,b){
     console.log(this);
     function sum(){
         console.log(this);
@@ -30,25 +30,40 @@ function showuser(surname, name){
 showuser('Байков', 'Максим'); */
 
 let inputGrn = document.getElementById('grn'),
-    inputUsd = document.getElementById('usd');
+  inputUsd = document.getElementById('usd');
 
-inputGrn.addEventListener('input',()=>{
-  
-  let request = new XMLHttpRequest();
+inputGrn.addEventListener('input', () => {
+
+  function getData() {
+
+    return new Promise(function (resolve, reject) {
+
+      let request = new XMLHttpRequest();
+
+
+
+      request.open('GET', 'current.json');
+      request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+      request.send();
+
+
+      request.addEventListener('load', function () {
+        if (request.readyState === 4 && request.status === 200) {
+          resolve(request);
+        } else if (request.readyState === 4 && request.status !== 200){
+          reject();
+        }
+      });
+    });
+  }
+
+  getData()
+          .then((request)=>{
+            let data = JSON.parse(request.response);
+            inputUsd.value = inputGrn.value / data.usd;
+          })
+          .catch(()=>inputUsd.value = " Что то пошло не так!");
 
   
-  
-  request.open('GET','current.json');
-  request.setRequestHeader('Content-type','application/json; charset=utf-8');
-  request.send();
-  
-
-  request.addEventListener('readystatechange', function(){
-    if(request.readyState === 4 && request.status === 200){      
-      let data = JSON.parse(request.response);
-      inputUsd.value = inputGrn.value/data.usd;
-    } else {
-      inputUsd.value = " Что то пошло не так!";
-    }
-  });
+          
 });
