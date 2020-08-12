@@ -250,27 +250,19 @@ window.addEventListener('DOMContentLoaded', function () {
         total = 0;
 
         totalValue.innerHTML = 0;
-        persons.addEventListener('input', function(){            
 
-            if (restDays.value == '' || persons.value == ''){
+        const inputHandler = event => {
+            if (!parseInt(restDays.value) || !parseInt(persons.value)){
                 totalValue.innerHTML = 0;
             }else {
-                personsSum = +this.value;
+                personsSum = +event.target.value;
                 total = (personsSum+daysSum)*450;
                 totalValue.innerHTML = total;
             }
-        });
+        };
 
-        restDays.addEventListener('input', function(){
-            
-            if (persons.value == '' || restDays.value == ''){
-                totalValue.innerHTML = 0;
-            }else {
-                daysSum = +this.value;
-                total = (personsSum+daysSum)*450;
-                totalValue.innerHTML = total;
-            }
-        });
+        persons.addEventListener('input', inputHandler);
+        restDays.addEventListener('input', inputHandler);
 
 
         place.addEventListener('change', function(){
